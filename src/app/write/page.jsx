@@ -79,27 +79,43 @@ const WritePage = () => {
       .replace(/^-+|-+$/g, "");
 
   const handleSubmit = async () => {
-    if (isSubmitting) {
-      alert("Please wait while we publish your post!");
-    }
-    
-    setIsSubmitting(true);
+    if (isSubmitting) return;
 
-    const res = await fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify({
-        title,
-        desc: value,
-        img: media,
-        slug: slugify(title),
-        catSlug: catSlug || "style", //If not selected, choose the general category
-      }),
-    });
+    setIsSubmitting(true); // Disable the publish button
 
-    if (res.status === 200) {
-      const data = await res.json();
-      router.push(`/posts/${data.slug}`);
-      setIsSubmitting(false);
+    try {
+      const res = await fetch("/api/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          desc: value,
+          img: media,
+          slug: slugify(title),
+          catSlug: catSlug || "style",
+        }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        router.push(`/posts/${data.slug}`);
+      } else {
+        // Handle different statuses appropriately
+        console.error("Failed to post: ", res.status);
+        throw new Error(
+          `Failed to publish post, server responded with status: ${res.status}`
+        );
+      }
+    } catch (error) {
+      // Error handling, e.g., show a notification or log
+      console.error("Publishing error:", error);
+      alert("Error publishing post. Please try again.");
+    } finally {
+      setTimeout(() => {
+        setIsSubmitting(false);
+      }, 2000);
     }
   };
 
@@ -109,9 +125,14 @@ const WritePage = () => {
         type="text"
         placeholder="Title"
         className={styles.input}
+        required
         onChange={(e) => setTitle(e.target.value)}
       />
-      <select className={styles.select} onChange={(e) => setCatSlug(e.target.value)}>
+      <select
+        className={styles.select}
+        onChange={(e) => setCatSlug(e.target.value)}
+        required
+      >
         <option value="style">style</option>
         <option value="fashion">fashion</option>
         <option value="food">food</option>
@@ -145,6 +166,7 @@ const WritePage = () => {
           </div>
         )}
         <ReactQuill
+          required
           className={styles.textArea}
           theme="bubble"
           value={value}
@@ -152,7 +174,11 @@ const WritePage = () => {
           placeholder="Tell your story..."
         />
       </div>
-      <button className={styles.publish} onClick={handleSubmit} disabled={isSubmitting}>
+      <button
+        className={`${styles.publish} ${isSubmitting ? styles.disabled : ""}`}
+        onClick={handleSubmit}
+        disabled={isSubmitting}
+      >
         {isSubmitting ? "Publishing..." : "Publish"}
       </button>
     </div>

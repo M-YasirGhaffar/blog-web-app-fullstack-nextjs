@@ -73,3 +73,8 @@
   cursor: pointer;
   border-radius: 20px;
 }
+
+.disabled {
+  background-color: #b3b3b1;
+  cursor: not-allowed;
+}
