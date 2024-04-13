@@ -25,6 +25,7 @@ const WritePage = () => {
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
   const [catSlug, setCatSlug] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const storage = getStorage(app);
@@ -78,6 +79,12 @@ const WritePage = () => {
       .replace(/^-+|-+$/g, "");
 
   const handleSubmit = async () => {
+    if (isSubmitting) {
+      alert("Please wait while we publish your post!");
+    }
+    
+    setIsSubmitting(true);
+
     const res = await fetch("/api/posts", {
       method: "POST",
       body: JSON.stringify({
@@ -92,6 +99,7 @@ const WritePage = () => {
     if (res.status === 200) {
       const data = await res.json();
       router.push(`/posts/${data.slug}`);
+      setIsSubmitting(false);
     }
   };
 
@@ -144,8 +152,8 @@ const WritePage = () => {
           placeholder="Tell your story..."
         />
       </div>
-      <button className={styles.publish} onClick={handleSubmit}>
-        Publish
+      <button className={styles.publish} onClick={handleSubmit} disabled={isSubmitting}>
+        {isSubmitting ? "Publishing..." : "Publish"}
       </button>
     </div>
   );
