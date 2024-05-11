@@ -11,7 +11,6 @@ const getData = async (slug) => {
   if (!res.ok) {
     throw new Error("Failed");
   }
-
   return res.json();
 };
 
@@ -19,6 +18,8 @@ const SinglePage = async ({ params }) => {
   const { slug } = params;
 
   const data = await getData(slug);
+
+  console.log(data);
 
   return (
     <div className={styles.container}>

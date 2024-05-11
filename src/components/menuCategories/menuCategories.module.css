@@ -10,6 +10,15 @@
   padding: 10px 25px;
   border-radius: 10px;
   font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: background-color 0.3s ease;
+}
+
+.categoryItem:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
 }
 
 .categoryItem.style {
