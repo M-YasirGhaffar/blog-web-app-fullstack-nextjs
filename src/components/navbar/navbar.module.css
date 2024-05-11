@@ -12,8 +12,9 @@
 }
 
 .logo {
-  flex: 1;
+  /* flex: 1; */
   text-align: center;
+  justify-content: flex-start;
   font-size: 36px;
   font-weight: bold;
 }
@@ -23,7 +24,7 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
-  flex: 1;
+  /* flex: 1; */
   font-size: 20px;
 }
 
