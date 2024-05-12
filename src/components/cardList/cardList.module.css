@@ -1,5 +1,6 @@
 .container{
-  flex:5
+  flex:5;
+  margin-top: 80px;
 }
 
 .title{

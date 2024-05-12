@@ -1,8 +1,12 @@
 .container {
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   display: flex;
   align-items: center;
   gap: 50px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  padding: 20px 0rem;
 }
 
 .imageContainer {
@@ -19,7 +23,11 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
+}
+
+.textContainer h1 {
+  margin-bottom: 1rem;
 }
 
 .date {
@@ -27,8 +35,43 @@
 }
 
 .category {
-  color: crimson;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  /* background-color: rgba(255, 255, 255, 0.2); */
+  backdrop-filter: blur(10px);
+  /* border: 1px solid rgba(255, 255, 255, 0.18); */
+  transition: background-color 0.3s ease;
   font-weight: 500;
+  display: inline-block;
+  width: min-content;
+  margin-top: 0.5rem;
+  text-transform: capitalize;
+}
+
+
+.style {
+  background-color: #57c4ff31;
+}
+
+.fashion {
+  background-color: #da85c731;
+}
+
+.food {
+  background-color: #7fb88133;
+}
+
+.travel {
+  background-color: #ff795736;
+}
+
+.culture {
+  background-color: #ffb04f45;
+}
+
+.coding {
+  background-color: #5e4fff31;
 }
 
 .desc {
