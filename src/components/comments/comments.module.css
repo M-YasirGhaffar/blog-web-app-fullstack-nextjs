@@ -9,16 +9,18 @@
 
 .write {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 30px;
 }
 
 .input {
-  padding: 20px;
+  padding: 10px;
   width: 100%;
+  height: 50px; /* Set this value equal to the button's height */
+  resize: none;
+  box-sizing: border-box; /* Include padding and border in element's total height */
 }
-
 .button {
   padding: 16px 20px;
   background-color: teal;

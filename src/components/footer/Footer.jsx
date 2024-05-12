@@ -12,14 +12,13 @@ const Footer = () => {
           <h1 className={styles.logoText}>My Next Blog</h1>
         </div> */}
           <p className={styles.desc}>
-            © {new Date().getFullYear()} My Next Blog. All rights reserved.
-            Crafted with passion and dedication. Check our code on{" "}
+            © {new Date().getFullYear()} All rights reserved.
             <a
               href="https://github.com/your-github-username/your-repo"
               target="_blank"
               rel="noopener noreferrer"
             >
-              GitHub
+              {" "}GitHub
             </a>
             .
           </p>

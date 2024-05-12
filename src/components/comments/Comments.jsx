@@ -29,14 +29,28 @@ const Comments = ({ postSlug }) => {
   );
 
   const [desc, setDesc] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state variable
 
-  const handleSubmit = async () => {
-    await fetch("/api/comments", {
-      method: "POST",
-      body: JSON.stringify({ desc, postSlug }),
-    });
-    mutate();
-  };
+const handleSubmit = async () => {
+  if (!desc.trim()) {
+    alert("Cannot submit an empty comment!");
+    return;
+  }
+
+  if (isSubmitting) {
+    alert("Submission is in progress, please wait!");
+    return;
+  }
+
+  setIsSubmitting(true); // Disable the textarea and the "Send" button
+  await fetch("/api/comments", {
+    method: "POST",
+    body: JSON.stringify({ desc, postSlug }),
+  });
+  mutate();
+  setDesc(""); // Clear the textarea
+  setIsSubmitting(false); // Enable the textarea and the "Send" button
+};
 
   return (
     <div className={styles.container}>
@@ -44,13 +58,14 @@ const Comments = ({ postSlug }) => {
       {status === "authenticated" ? (
         <div className={styles.write}>
           <textarea
-            placeholder="write a comment..."
+            required
+            placeholder="Write a comment..."
             className={styles.input}
+            value={desc}
             onChange={(e) => setDesc(e.target.value)}
+            disabled={isSubmitting}
           />
-          <button className={styles.button} onClick={handleSubmit}>
-            Send
-          </button>
+          <button className={styles.button} onClick={handleSubmit} disabled={isSubmitting}>Send</button>
         </div>
       ) : (
         <Link href="/login">Login to write a comment</Link>
@@ -72,7 +87,9 @@ const Comments = ({ postSlug }) => {
                   )}
                   <div className={styles.userInfo}>
                     <span className={styles.username}>{item.user.name}</span>
-                    <span className={styles.date}>{item.createdAt}</span>
+                    <span className={styles.date}>
+                      {new Date(item.createdAt).toLocaleString()}
+                    </span>
                   </div>
                 </div>
                 <p className={styles.desc}>{item.desc}</p>

@@ -3,6 +3,7 @@ import styles from "./card.module.css";
 import Link from "next/link";
 
 const Card = ({ key, item }) => {
+  console.log(item)
   return (
     <div className={styles.container} key={key}>
       {item.img && (
@@ -12,12 +13,16 @@ const Card = ({ key, item }) => {
       )}
       <div className={styles.textContainer}>
         <div className={styles.detail}>
+          <span className={styles.user}>
+            <Image src={item?.user?.image} width={32} height={32}></Image>
+            <p>{item?.user?.name}</p>
           <span className={styles.date}>
             {new Date(item.createdAt).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",
               day: "numeric",
             })}{" "}
+          </span>
           </span>
         </div>
         <Link href={`/posts/${item.slug}`}>
@@ -36,7 +41,10 @@ const Card = ({ key, item }) => {
         ></div>
 
         </Link>
+        <div className={styles.footDiv}>
         <span className={`${styles.category} ${styles[item.catSlug]}`}>{item.catSlug}</span>
+        <span className={`${styles.views} `}>{item.views} Views</span>
+        </div>
       </div>
       
     </div>

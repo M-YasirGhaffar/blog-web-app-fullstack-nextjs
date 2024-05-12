@@ -27,7 +27,10 @@ export const GET = async (req) => {
   
   try {
     const [posts, count] = await prisma.$transaction([
-      prisma.post.findMany(query),
+      prisma.post.findMany({
+        ...query,
+        include: { user: true }, // Include the related user
+      }),
       prisma.post.count({ where: query.where }),
     ]);
     return new NextResponse(JSON.stringify({ posts, count }, { status: 200 }));
