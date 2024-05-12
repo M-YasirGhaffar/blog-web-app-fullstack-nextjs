@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "My Next Blog",
-  description: "Our Next Best Blogging App!",
+  description: "An amazing block application developed using NextJs MongoDB!",
 };
 
 export default function RootLayout({ children }) {
