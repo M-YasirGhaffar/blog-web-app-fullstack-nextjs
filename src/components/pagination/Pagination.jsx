@@ -5,6 +5,7 @@ import styles from "./pagination.module.css";
 import { useRouter } from "next/navigation";
 
 const Pagination = ({ page, hasPrev, hasNext }) => {
+  console.log("Pages: " , page)
   const router = useRouter();
 
   return (

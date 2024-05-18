@@ -51,6 +51,15 @@
   margin-left: 5px;
 }
 
+.desc p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.desc img {
+  display: none;
+}
+
 .date::before {
   content: "-";
   margin-right: 5px;
