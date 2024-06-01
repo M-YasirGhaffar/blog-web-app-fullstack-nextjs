@@ -26,6 +26,7 @@ const WritePage = () => {
   const [title, setTitle] = useState("");
   const [catSlug, setCatSlug] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [titleLength, setTitleLength] = useState(0);
 
   useEffect(() => {
     const storage = getStorage(app);
@@ -115,19 +116,30 @@ const WritePage = () => {
     } finally {
       setTimeout(() => {
         setIsSubmitting(false);
-      }, 2000);
+      }, 10000);
     }
   };
 
   return (
     <div className={styles.container}>
-      <input
-        type="text"
-        placeholder="Title"
-        className={styles.input}
-        required
-        onChange={(e) => setTitle(e.target.value)}
-      />
+        <input
+          type="text"
+          placeholder="Title"
+          className={styles.input}
+          required
+          value={title}
+          maxLength={70}
+          onChange={(e) => {
+            if (e.target.value.length <= 70) {
+              setTitle(e.target.value);
+              setTitleLength(e.target.value.length);
+            }
+          }}
+        />
+        <div className={styles.counter}>
+          <p>{titleLength}/70</p>
+        </div>
+
       <select
         className={styles.select}
         onChange={(e) => setCatSlug(e.target.value)}

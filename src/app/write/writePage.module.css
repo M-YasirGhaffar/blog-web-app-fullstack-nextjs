@@ -74,6 +74,17 @@
   border-radius: 20px;
 }
 
+.counter{
+  position: absolute;
+  top: 8%;
+  right: 0%;
+  padding: 10px 0px;
+  border: none;
+  color: var(--textColor);
+  cursor: pointer;
+  border-radius: 20px;
+}
+
 .disabled {
   background-color: #b3b3b1;
   cursor: not-allowed;

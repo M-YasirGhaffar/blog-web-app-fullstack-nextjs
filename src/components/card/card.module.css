@@ -32,6 +32,7 @@
 }
 
 .textContainer h1 {
+  font-size: 1.7rem;
   margin-bottom: 1rem;
 }
 
@@ -119,7 +120,7 @@
 }
 
 .desc {
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 300;
   color: var(--softTextColor);
 }
