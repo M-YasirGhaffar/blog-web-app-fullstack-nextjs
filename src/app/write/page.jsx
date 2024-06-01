@@ -122,38 +122,40 @@ const WritePage = () => {
 
   return (
     <div className={styles.container}>
-        <input
-          type="text"
-          placeholder="Title"
-          className={styles.input}
-          required
-          value={title}
-          maxLength={70}
-          onChange={(e) => {
-            if (e.target.value.length <= 70) {
-              setTitle(e.target.value);
-              setTitleLength(e.target.value.length);
-            }
-          }}
-        />
-        <div className={styles.counter}>
-          <p>{titleLength}/70</p>
-        </div>
-
-      <select
-        className={styles.select}
-        onChange={(e) => setCatSlug(e.target.value)}
+      <input
+        type="text"
+        placeholder="Title for your amazing post..."
+        className={styles.input}
         required
-      >
-        <option value="style">style</option>
-        <option value="fashion">fashion</option>
-        <option value="food">food</option>
-        <option value="culture">culture</option>
-        <option value="travel">travel</option>
-        <option value="coding">coding</option>
-      </select>
+        value={title}
+        maxLength={70}
+        onChange={(e) => {
+          if (e.target.value.length <= 70) {
+            setTitle(e.target.value);
+            setTitleLength(e.target.value.length);
+          }
+        }}
+      />
+      <div className={styles.counter}>
+        <p>{titleLength}/70</p>
+      </div>
+      <div className={styles.categorySelect} >
+        <span>Select Category</span>
+        <select
+          className={styles.select}
+          onChange={(e) => setCatSlug(e.target.value)}
+          required
+        >
+          <option value="style">style</option>
+          <option value="fashion">fashion</option>
+          <option value="food">food</option>
+          <option value="culture">culture</option>
+          <option value="travel">travel</option>
+          <option value="coding">coding</option>
+        </select>
+      </div>
       <div className={styles.editor}>
-        <button className={styles.button} onClick={() => setOpen(!open)}>
+        {/* <button className={styles.button} onClick={() => setOpen(!open)}>
           <Image src="/plus.png" alt="" width={16} height={16} />
         </button>
         {open && (
@@ -176,14 +178,14 @@ const WritePage = () => {
               <Image src="/video.png" alt="" width={16} height={16} />
             </button>
           </div>
-        )}
+        )} */}
         <ReactQuill
           required
           className={styles.textArea}
           theme="bubble"
           value={value}
           onChange={setValue}
-          placeholder="Tell your story..."
+          placeholder="Tell your story. Past images directly in the editor..."
         />
       </div>
       <button

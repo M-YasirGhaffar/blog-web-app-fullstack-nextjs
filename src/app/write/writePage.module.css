@@ -4,16 +4,20 @@
   flex-direction: column;
 }
 
+.container span {
+  margin-left: 15px;
+}
+
 .select{
   margin-bottom: 50px;
   padding: 10px 20px;
-  margin-left: 50px;
+  margin-left: 10px;
   width: max-content;
 }
 
 .editor {
   display: flex;
-  gap: 20px;
+  /* gap: 20px; */
   height: 700px;
   position: relative;
 }
@@ -47,6 +51,7 @@
 
 .input{
   padding: 50px;
+  padding-left: 15px;
   font-size: 64px;
   border: none;
   outline: none;
