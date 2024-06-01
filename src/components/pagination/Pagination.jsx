@@ -5,9 +5,11 @@ import styles from "./pagination.module.css";
 import { useRouter } from "next/navigation";
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 
-const Pagination = ({ page, hasPrev, hasNext }) => {
+const Pagination = ({ page, hasPrev, hasNext, total }) => {
   console.log("Pages: " , page)
   const router = useRouter();
+
+  const current = parseInt(page) || 1;
 
   return (
     <div className={styles.container}>
@@ -16,14 +18,15 @@ const Pagination = ({ page, hasPrev, hasNext }) => {
         disabled={!hasPrev}
         onClick={() => router.push(`?page=${page - 1}`)}
       >
-        <MdNavigateBefore />
+        <MdNavigateBefore size={32}/>
       </button>
+<span className={styles.pageCounter}>{current}/{Math.ceil(total/10)}</span>      
       <button
         disabled={!hasNext}
         className={styles.button}
         onClick={() => router.push(`?page=${page + 1}`)}
       >
-        <MdNavigateNext />
+        <MdNavigateNext size={32}/>
       </button>
     </div>
   );

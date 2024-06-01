@@ -2,18 +2,37 @@
   display: flex;
   justify-content: space-between;
   margin-top: 80px;
+  align-items: center;
+}
+
+.pageCounter {
+  color: var(--softTextColor);
+
+  font-size: 1.2em;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .button {
-  width: 100px;
-  border: none;
-  padding: 16px;
-  background-color: crimson;
+  width: max-content;
+  /* border: none; */
+  padding: 8px;
+  border-radius: 50%;
+  background-color: var(--textColor);
   color: white;
   cursor: pointer;
 }
 
+.button svg {
+  color: var(--bg);
+}
+
 .button:disabled{
-  background-color: rgba(220, 20, 60, 0.473);
+  background-color: rgba(var(--softTextColor), 0.473);
+  border: var(--textColor) 1px solid;
   cursor: not-allowed;
+}
+
+.button:disabled svg{
+  color: var(--softTextColor);
 }
