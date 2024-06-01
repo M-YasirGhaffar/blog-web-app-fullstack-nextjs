@@ -16,6 +16,9 @@ export const GET = async (req) => {
     where: {
       ...(cat && { catSlug: cat }),
     },
+    orderBy: {
+      createdAt: 'desc',
+    },
   };
 
   try {
