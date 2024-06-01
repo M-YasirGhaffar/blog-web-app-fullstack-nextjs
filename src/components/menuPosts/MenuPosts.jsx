@@ -1,21 +1,16 @@
-"use client"
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
 import styles from "./menuPosts.module.css"
 
-const MenuPosts = ({ withImage }) => {
-  const [posts, setPosts] = useState([]);
+const fetchPosts = async () => {
+  const res = await fetch('http://localhost:3000/api/popular');
+  const data = await res.json();
+  return data.posts;
+};
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await fetch('http://localhost:3000/api/popular');
-      const data = await res.json();
-      setPosts(data.posts);
-    };
+const MenuPosts = async ({ withImage }) => {
 
-    fetchPosts();
-  }, []);
+  const posts = await fetchPosts();
 
   return (
     <div className={styles.items}>
