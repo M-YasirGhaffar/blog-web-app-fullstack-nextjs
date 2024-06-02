@@ -15,6 +15,7 @@ import {
 import { app } from "@/utils/firebase";
 import ReactQuill from "react-quill";
 import { set } from "date-fns";
+import Loading from "@/components/loading/Loading";
 
 const WritePage = () => {
   const { status } = useSession();
@@ -130,6 +131,7 @@ const WritePage = () => {
 
   return (
     <div className={styles.container}>
+      <Loading  show={isSubmitting} />
       <input
         type="text"
         placeholder="Title for your amazing post..."

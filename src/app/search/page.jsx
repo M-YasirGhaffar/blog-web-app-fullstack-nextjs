@@ -20,15 +20,20 @@ const SearchPage = () => {
 
   return (
     <div>
+      <h1 className={styles.searchTitle}>Search Results</h1>
+      <p className={styles.searchTerm}>
+        <i>{searchTerm}</i>
+      </p>
       {searchResults && (
         <div>
-          <h1 className={styles.searchTitle}>Search Results</h1>
-          <p className={styles.searchTerm}><i>{searchTerm}</i></p>
           {searchResults.map((result) => (
             <Card item={result} key={result._id} />
           ))}
         </div>
       )}
+
+      {searchResults == 0 && <p>No results found!</p>}
+      
     </div>
   );
 };

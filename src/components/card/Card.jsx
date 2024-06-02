@@ -1,13 +1,26 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./card.module.css";
-import Link from "next/link";
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import Loading from '../loading/Loading';
 
 const Card = ({ key, item }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    router.push(`/posts/${item.slug}`);
+  };
+
   return (
     <div className={styles.container} key={key}>
       {item.img && (
         <div className={styles.imageContainer}>
-          <Image src={item.img} alt="" fill className={styles.image} />
+          <Image src={item.img} alt={item.title} fill className={styles.image} />
         </div>
       )}
       <div className={styles.textContainer}>
@@ -24,11 +37,9 @@ const Card = ({ key, item }) => {
           </span>
           </span>
         </div>
-        <Link href={`/posts/${item.slug}`}>
-        <Link href={`/posts/${item.slug}`}>
+
+        <a className={styles.clickable} href={`/posts/${item.slug}`} onClick={handleClick}>
           <h1>{item.title}</h1>
-        </Link>
-        {/* <p className={styles.desc}>{item.desc.substring(0, 60)}</p> */}
         <div
           className={styles.desc}
           dangerouslySetInnerHTML={{
@@ -38,14 +49,14 @@ const Card = ({ key, item }) => {
                 : item?.desc,
           }}
         ></div>
+        </a>
 
-        </Link>
         <div className={styles.footDiv}>
         <span className={`${styles.category} ${styles[item.catSlug]}`}>{item.catSlug}</span>
         <span className={`${styles.views} `}>{item.views} Views</span>
         </div>
       </div>
-      
+      <Loading show={isLoading} />
     </div>
   );
 };

@@ -36,6 +36,15 @@
   margin-bottom: 1rem;
 }
 
+.clickable {
+  display: inline-block;
+  max-width: max-content;
+}
+
+.clickable h1, .clickable p {
+  display: inline-block;
+}
+
 .user {
   display: flex;
   justify-content: flex-start;
