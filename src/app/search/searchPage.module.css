@@ -1,0 +1,12 @@
+.searchTitle {
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+
+.searchTerm {
+    text-align: center;
+    width: 50%;
+    margin: 1rem auto;
+}

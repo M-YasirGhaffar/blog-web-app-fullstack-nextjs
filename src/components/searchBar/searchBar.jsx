@@ -8,6 +8,7 @@ const SearchBar = ({ action = '/search' }) => {
         name="searchTerm"
         className={styles.searchInput}
         placeholder="Search..."
+        required
       />
       <button type="submit" className={styles.searchButton}>Search</button>
     </form>

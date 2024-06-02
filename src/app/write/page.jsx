@@ -14,6 +14,7 @@ import {
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
 import ReactQuill from "react-quill";
+import { set } from "date-fns";
 
 const WritePage = () => {
   const { status } = useSession();
@@ -85,6 +86,13 @@ const WritePage = () => {
     setIsSubmitting(true); // Disable the publish button
 
     try {
+
+      if (!title || !value) {
+        alert("Title and description cannot be empty");
+        setIsSubmitting(false);
+        return;
+      }
+
       const res = await fetch("/api/posts", {
         method: "POST",
         headers: {
@@ -191,8 +199,8 @@ const WritePage = () => {
       <button
         className={`${styles.publish} ${isSubmitting ? styles.disabled : ""}`}
         onClick={handleSubmit}
-        disabled={isSubmitting}
-      >
+        disabled={isSubmitting }
+        >
         {isSubmitting ? "Publishing..." : "Publish"}
       </button>
     </div>
