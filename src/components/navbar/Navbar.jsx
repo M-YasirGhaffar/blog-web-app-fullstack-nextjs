@@ -1,30 +1,40 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import styles from "./navbar.module.css";
-import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import AuthLinks from "../authLinks/AuthLinks";
 import ThemeToggle from "../themeToggle/ThemeToggle";
 import { SiNextdotjs } from "react-icons/si";
 import SearchBar from "../searchBar/searchBar";
+import Transition from '../transition/Transition'; // Import the Transition component
 
 const Navbar = () => {
+  const router = useRouter();
+  const pathName = usePathname();
+  console.log(pathName);
+  const [show, setShow] = useState(false);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    pathName == '/'? setShow(false) : setShow(true);
+    router.push('/');
+    setShow(false);
+  };
+
   return (
     <div className={styles.container}>
+      <Transition show={show} /> {/* Add the Transition component */}
       <div className={styles.logo}>
-        {" "}
-        <Link href="/" className={styles.link}>
-        <SiNextdotjs /> Blog
-
-        </Link>
-
+        <a href="/" onClick={handleClick} className={styles.link}>
+          <SiNextdotjs /> Blog
+        </a>
         <SearchBar />
       </div>
       <div className={styles.links}>
         <ThemeToggle />
-        {/* <Link href="/" className={styles.link}>
-          Home
-        </Link> */}
-      <AuthLinks />
+        <AuthLinks />
       </div>
     </div>
   );

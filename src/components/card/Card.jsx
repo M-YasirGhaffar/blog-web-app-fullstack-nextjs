@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./card.module.css";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import Loading from '../loading/Loading';
+import Transition from "../transition/Transition";
 
 const Card = ({ key, item }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -56,7 +56,7 @@ const Card = ({ key, item }) => {
         <span className={`${styles.views} `}>{item.views} Views</span>
         </div>
       </div>
-      <Loading show={isLoading} />
+      <Transition show={isLoading} />
     </div>
   );
 };
