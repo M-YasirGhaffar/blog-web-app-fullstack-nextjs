@@ -84,3 +84,32 @@ a {
 .quill > .ql-container > .ql-editor.ql-blank::before{
   color: #b3b3b1;
 }
+
+/* Add this to your globals.css file */
+
+/* This will affect the scrollbar's width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* This will affect the scrollbar's height on horizontal scrollbars */
+::-webkit-scrollbar {
+  height: 8px;
+}
+
+/* This will style the 'thumb' or the draggable part of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Change this to the color you prefer */
+  border-radius: 4px; /* This will give the rounded effect */
+}
+
+/* This will style the 'track' or the non-draggable part of the scrollbar */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Change this to the color you prefer */
+  border-radius: 4px; /* This will give the rounded effect */
+}
+
+/* This will style the 'thumb' on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Change this to the color you prefer */
+}
