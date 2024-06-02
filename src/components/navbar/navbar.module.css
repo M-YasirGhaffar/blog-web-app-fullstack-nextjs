@@ -13,16 +13,17 @@
 
 .logo {
   /* flex: 1; */
+  display: flex;
   text-align: center;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   font-size: 36px;
   font-weight: bold;
 }
 
 .logo a {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   align-items: center;
 
 }

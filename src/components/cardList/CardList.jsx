@@ -20,7 +20,6 @@ const getData = async (page, cat) => {
 
 const CardList = async ({ page, cat }) => {
   const { posts, count, totalPosts } = await getData(page, cat);
-  console.log(count);
   const POST_PER_PAGE = 10;
 
   const hasPrev = POST_PER_PAGE * (page - 1) > 0;

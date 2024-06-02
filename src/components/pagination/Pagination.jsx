@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 
 const Pagination = ({ page, hasPrev, hasNext, total }) => {
-  console.log("Pages: " , page)
   const router = useRouter();
 
   const current = parseInt(page) || 1;
