@@ -103,13 +103,11 @@ a {
   border-radius: 4px; /* This will give the rounded effect */
 }
 
-/* This will style the 'track' or the non-draggable part of the scrollbar */
 ::-webkit-scrollbar-track {
   background: #f1f1f1; /* Change this to the color you prefer */
-  border-radius: 4px; /* This will give the rounded effect */
+  border-radius: 4px; 
 }
 
-/* This will style the 'thumb' on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Change this to the color you prefer */
+  background: #555; 
 }

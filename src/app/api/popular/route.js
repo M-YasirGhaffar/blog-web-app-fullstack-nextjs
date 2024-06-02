@@ -14,7 +14,7 @@ export const GET = async (req) => {
     const [posts, totalPosts] = await prisma.$transaction([
       prisma.post.findMany({
         ...query,
-        include: { user: true }, // Include the related user
+        include: { user: true }, 
       }),
       prisma.post.count(), // Count all posts
     ]);
