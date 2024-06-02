@@ -67,6 +67,14 @@
   width: 100%;
 }
 
+.textArea img {
+  max-width: 70% !important;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0px 0px 2px var(--softTextColor);
+  border-radius: 8px;
+}
+
 .publish{
   position: absolute;
   top: 0px;
