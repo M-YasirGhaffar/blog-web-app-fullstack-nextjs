@@ -10,10 +10,9 @@ const BlogPage = ({ searchParams }) => {
   return (
     <>
       <Head>
-        {/* {ToDo} */}
-        <title>{cat} Blog - Your Website Name</title>
+        <title>{cat} Blog - My Next Blog</title>
         <meta name="description" content={`Read the latest ${cat} blogs on our website.`} />
-        <meta property="og:title" content={`${cat} Blog - Your Website Name`} />
+        <meta property="og:title" content={`${cat} Blog - My Next Blog`} />
         <meta property="og:description" content={`Read the latest ${cat} blogs on our website.`} />
         <meta property="og:url" content={`https://yourwebsite.com/blog/${cat}`} />
         <meta property="og:type" content="website" />

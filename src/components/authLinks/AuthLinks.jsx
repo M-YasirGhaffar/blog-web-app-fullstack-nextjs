@@ -3,15 +3,18 @@ import Link from "next/link";
 import styles from "./authLinks.module.css";
 import { useState } from "react";
 import { signOut, useSession } from "next-auth/react";
+import { SiNextdotjs } from "react-icons/si";
+import SearchBar from "../searchBar/searchBar";
+import ThemeToggle from "../themeToggle/ThemeToggle";
 
 const AuthLinks = () => {
   const [open, setOpen] = useState(false);
 
-  const { status } = useSession();
+  const { data: session } = useSession();
 
   return (
     <>
-      {status === "unauthenticated" ? (
+      {!session ? (
         <Link href="/login" className={styles.link}>
           Login
         </Link>
@@ -32,15 +35,20 @@ const AuthLinks = () => {
       </div>
       {open && (
         <div className={styles.responsiveMenu}>
-          <Link href="/">Homepage</Link>
-          <Link href="/">About</Link>
-          <Link href="/">Contact</Link>
-          {status === "notauthenticated" ? (
+          <ThemeToggle />
+
+          <Link
+            href="/"
+            style={{ display: "flex", alignItems: "center", gap: "5px" }}
+          >
+            <SiNextdotjs /> Blog
+          </Link>
+          {!session ? (
             <Link href="/login">Login</Link>
           ) : (
             <>
               <Link href="/write">Write</Link>
-              <span className={styles.link}>Logout</span>
+              <span className={styles.link2} onClick={signOut}>Logout</span>
             </>
           )}
         </div>

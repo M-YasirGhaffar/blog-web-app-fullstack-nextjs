@@ -134,15 +134,15 @@ const WritePage = () => {
         <title>Write a new blog post - My Next Blog</title>
         <meta
           name="description"
-          content="Write a new blog post on Your Website Name."
+          content="Write a new blog post on My Next Blog."
         />
         <meta
           property="og:title"
-          content="Write a new blog post - Your Website Name"
+          content="Write a new blog post - My Next Blog"
         />
         <meta
           property="og:description"
-          content="Write a new blog post on Your Website Name."
+          content="Write a new blog post on My Next Blog."
         />
         <meta property="og:url" content="https://yourwebsite.com/write" />
         <meta property="og:type" content="website" />
@@ -189,6 +189,7 @@ const WritePage = () => {
             theme="bubble"
             value={value}
             onChange={setValue}
+              style={{ fontWeight: 'normal' }}
             placeholder="Tell your story. Past images directly in the editor..."
           />
         </div>

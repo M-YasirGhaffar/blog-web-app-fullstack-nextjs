@@ -37,7 +37,7 @@ const Navbar = () => {
         <SearchBar />
       </div>
       <div className={styles.links}>
-        <ThemeToggle />
+        <div className={styles.themeButton}><ThemeToggle /></div>
         <AuthLinks />
       </div>
     </nav>

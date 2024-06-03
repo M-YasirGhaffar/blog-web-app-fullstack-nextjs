@@ -19,23 +19,13 @@ const Card = ({ key, item }) => {
 
   return (
     <>
-      <Head>
+      <head>
         <meta name="title" content={item.title} />
         <meta name="description" content={item.desc} />
         <link rel="canonical" href={`/posts/${item.slug}`} />
-      </Head>
+      </head>
 
       <div className={styles.container} key={key}>
-        {/* {item.img && (
-          <div className={styles.imageContainer}>
-            <Image
-              src={item.img}
-              alt={item.title}
-              fill
-              className={styles.image}
-            />
-          </div>
-        )} */}
         <div className={styles.textContainer}>
           <div className={styles.detail}>
             <span className={styles.user}>

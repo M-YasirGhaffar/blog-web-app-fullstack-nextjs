@@ -69,11 +69,23 @@ a {
 @media screen and (max-width: 768px) {
   .wrapper {
     /* max-width: 640px; */
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }
 @media screen and (max-width: 640px) {
   .wrapper {
     /* max-width: 475px; */
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .wrapper {
+    /* max-width: 475px; */
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 

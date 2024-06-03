@@ -52,7 +52,7 @@
 .input{
   padding: 50px;
   padding-left: 15px;
-  font-size: 64px;
+  font-size: 3.5rem;
   border: none;
   outline: none;
   background-color: transparent;
@@ -102,3 +102,51 @@
   background-color: #b3b3b1;
   cursor: not-allowed;
 }
+
+@media screen and (max-width: 768px) {
+    .input {
+      font-size: 2.5rem;
+    }
+
+    .select {
+      margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .input {
+      font-size: 1.5rem;
+    }
+
+    .select {
+      margin-bottom: 1rem;
+      padding: 5px 10px;
+    }
+
+    .ql-editor p {
+      font-size: 1rem !important;
+      font-weight: 200 !important;
+      line-height: 1rem !important;
+    }
+    .ql-editor * {
+      font-size: 1rem !important;
+      font-weight: 200 !important;
+      line-height: 1rem !important;
+    }
+    .ql-editor {
+      font-size: 1rem !important;
+      font-weight: 200 !important;
+      line-height: 1rem !important;
+    }
+    .ql-bubble {
+      font-size: 1rem !important;
+      font-weight: 200 !important;
+      line-height: 1rem !important;
+    }
+    div.ql-editor {
+      font-size: 1rem !important;
+      font-weight: 200 !important;
+      line-height: 1rem !important;
+    }
+}
+

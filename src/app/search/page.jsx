@@ -24,7 +24,7 @@ const SearchPage = () => {
       <head>
         <title>{`${searchTerm} - My Next Blog`}</title>
         <meta name="description" content={`Search results for ${searchTerm} on our website.`} />
-        <meta property="og:title" content={`Search Results for ${searchTerm} - Your Website Name`} />
+        <meta property="og:title" content={`Search Results for ${searchTerm} - My Next Blog`} />
         <meta property="og:description" content={`Search results for ${searchTerm} on our website.`} />
         <meta property="og:url" content={`https://yourwebsite.com/search?searchTerm=${encodeURIComponent(searchTerm)}`} />
         <meta property="og:type" content="website" />
