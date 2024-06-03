@@ -23,6 +23,8 @@ const fetcher = async (url) => {
 const Comments = ({ postSlug }) => {
   const { status } = useSession();
 
+  console.log(process.env.NEXTAUTH_URL);
+
   const { data, mutate, isLoading } = useSWR(
     `${process.env.NEXTAUTH_URL}/api/comments?postSlug=${postSlug}`,
     fetcher
@@ -96,9 +98,7 @@ const Comments = ({ postSlug }) => {
         <Link href="/login">Login to write a comment</Link>
       )}
       <div className={styles.comments}>
-        {isLoading
-          ? "loading"
-          : data?.map((item) => (
+        { data?.map((item) => (
               <div className={styles.comment} key={item._id}>
                 <div className={styles.user}>
                   {item?.user?.image && (
