@@ -6,8 +6,8 @@
 }
 
 .wrapper {
-  background-color: var(--softBg);
-  padding: 150px 200px;
+  background-color: var(--softTextColor);
+  padding: 100px 150px;
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -52,4 +52,16 @@
     font-weight: 400;
     font-size: 14px;
   }
+}
+
+.google {
+  background-color: #4285F4;
+}
+
+.github {
+  background-color: #333;
+}
+
+.icon {
+  margin-right: 10px;
 }

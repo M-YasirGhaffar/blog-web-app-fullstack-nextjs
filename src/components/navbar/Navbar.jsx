@@ -18,13 +18,17 @@ const Navbar = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    pathName == '/'? setShow(false) : setShow(true);
-    router.push('/');
-    setShow(false);
+    if (pathName != '/') {
+      router.push('/')
+      setShow(false);
+      return;
+    }
+    // pathName == '/'? setShow(false) : setShow(true);
+    // router.push('/').then(() => setShow(false));
   };
 
   return (
-    <div className={styles.container}>
+    <nav className={styles.container}>
       <Transition show={show} /> {/* Add the Transition component */}
       <div className={styles.logo}>
         <a href="/" onClick={handleClick} className={styles.link}>
@@ -36,7 +40,7 @@ const Navbar = () => {
         <ThemeToggle />
         <AuthLinks />
       </div>
-    </div>
+    </nav>
   );
 };
 

@@ -8,14 +8,16 @@ import AuthProvider from "@/providers/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "My Next Blog",
-  description: "An amazing block application developed using NextJs MongoDB!",
-};
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Next Blog</title>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href={inter.url} />
+      </head>
       <body className={inter.className}>
         <AuthProvider>
           <ThemeContextProvider>

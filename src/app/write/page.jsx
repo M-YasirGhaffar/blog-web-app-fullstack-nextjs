@@ -87,7 +87,6 @@ const WritePage = () => {
     setIsSubmitting(true); // Disable the publish button
 
     try {
-
       if (!title || !value) {
         alert("Title and description cannot be empty");
         setIsSubmitting(false);
@@ -130,58 +129,78 @@ const WritePage = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <Loading  show={isSubmitting} />
-      <input
-        type="text"
-        placeholder="Title for your amazing post..."
-        className={styles.input}
-        required
-        value={title}
-        maxLength={70}
-        onChange={(e) => {
-          if (e.target.value.length <= 70) {
-            setTitle(e.target.value);
-            setTitleLength(e.target.value.length);
-          }
-        }}
-      />
-      <div className={styles.counter}>
-        <p>{titleLength}/70</p>
-      </div>
-      <div className={styles.categorySelect} >
-        <span>Select Category</span>
-        <select
-          className={styles.select}
-          onChange={(e) => setCatSlug(e.target.value)}
-          required
-        >
-          <option value="style">style</option>
-          <option value="fashion">fashion</option>
-          <option value="food">food</option>
-          <option value="culture">culture</option>
-          <option value="travel">travel</option>
-          <option value="coding">coding</option>
-        </select>
-      </div>
-      <div className={styles.editor}>
-        <ReactQuill
-          required
-          className={styles.textArea}
-          theme="bubble"
-          value={value}
-          onChange={setValue}
-          placeholder="Tell your story. Past images directly in the editor..."
+    <>
+      <head>
+        <title>Write a new blog post - My Next Blog</title>
+        <meta
+          name="description"
+          content="Write a new blog post on Your Website Name."
         />
-      </div>
-      <button
-        className={`${styles.publish} ${isSubmitting ? styles.disabled : ""}`}
-        onClick={handleSubmit}
-        disabled={isSubmitting }
+        <meta
+          property="og:title"
+          content="Write a new blog post - Your Website Name"
+        />
+        <meta
+          property="og:description"
+          content="Write a new blog post on Your Website Name."
+        />
+        <meta property="og:url" content="https://yourwebsite.com/write" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://yourwebsite.com/write" />
+      </head>
+      <div className={styles.container}>
+        <Loading show={isSubmitting} />
+        <input
+          type="text"
+          placeholder="Title for your amazing post..."
+          className={styles.input}
+          required
+          value={title}
+          maxLength={70}
+          onChange={(e) => {
+            if (e.target.value.length <= 70) {
+              setTitle(e.target.value);
+              setTitleLength(e.target.value.length);
+            }
+          }}
+        />
+        <div className={styles.counter}>
+          <p>{titleLength}/70</p>
+        </div>
+        <div className={styles.categorySelect}>
+          <span>Select Category</span>
+          <select
+            className={styles.select}
+            onChange={(e) => setCatSlug(e.target.value)}
+            required
+          >
+            <option value="style">style</option>
+            <option value="fashion">fashion</option>
+            <option value="food">food</option>
+            <option value="culture">culture</option>
+            <option value="travel">travel</option>
+            <option value="coding">coding</option>
+          </select>
+        </div>
+        <div className={styles.editor}>
+          <ReactQuill
+            required
+            className={styles.textArea}
+            theme="bubble"
+            value={value}
+            onChange={setValue}
+            placeholder="Tell your story. Past images directly in the editor..."
+          />
+        </div>
+        <button
+          className={`${styles.publish} ${isSubmitting ? styles.disabled : ""}`}
+          onClick={handleSubmit}
+          disabled={isSubmitting}
         >
-        {isSubmitting ? "Publishing..." : "Publish"}
-      </button>
-    </div>
+          {isSubmitting ? "Publishing..." : "Publish"}
+        </button>
+      </div>
+    </>
   );
 };
 

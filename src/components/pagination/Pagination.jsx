@@ -2,20 +2,34 @@
 
 import React from "react";
 import styles from "./pagination.module.css";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 
 const Pagination = ({ page, hasPrev, hasNext, total }) => {
   const router = useRouter();
+  const [show, setShow] = useState(false);
 
   const current = parseInt(page) || 1;
+
+  const handleClickNext = (e) => {
+    e.preventEventDefault();
+    setShow(true);
+    router.push(`?page=${page + 1}`)
+  }
+
+  const handleClickPrev = (e) => {
+    e.preventEventDefault();
+    setShow(true);
+    router.push(`?page=${page - 1}`)
+  }
 
   return (
     <div className={styles.container}>
       <button
         className={styles.button}
         disabled={!hasPrev}
-        onClick={() => router.push(`?page=${page - 1}`)}
+        onClick={handleClickPrev}
       >
         <MdNavigateBefore size={32}/>
       </button>
@@ -23,7 +37,7 @@ const Pagination = ({ page, hasPrev, hasNext, total }) => {
       <button
         disabled={!hasNext}
         className={styles.button}
-        onClick={() => router.push(`?page=${page + 1}`)}
+        onClick={handleClickNext}
       >
         <MdNavigateNext size={32}/>
       </button>
