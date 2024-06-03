@@ -30,6 +30,7 @@ const Pagination = ({ page, hasPrev, hasNext, total }) => {
         className={styles.button}
         disabled={!hasPrev}
         onClick={handleClickPrev}
+        name="prev"
       >
         <MdNavigateBefore size={32}/>
       </button>
@@ -38,6 +39,7 @@ const Pagination = ({ page, hasPrev, hasNext, total }) => {
         disabled={!hasNext}
         className={styles.button}
         onClick={handleClickNext}
+        name="next"
       >
         <MdNavigateNext size={32}/>
       </button>
