@@ -21,12 +21,22 @@ const fetcher = async (url) => {
 };
 
 const Comments = ({ postSlug }) => {
+  console.log("Session in comments")
   const { status } = useSession();
+  console.log("Session in comments")
 
   const { data, mutate, isLoading } = useSWR(
+    console.log("Session in comments")
+
     `${process.env.NEXTAUTH_URL}/api/comments?postSlug=${postSlug}`,
+    
     fetcher
+    
   );
+  console.log("Session in comments")
+
+
+  console.log(data);
 
   const [desc, setDesc] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false); // New state variable
