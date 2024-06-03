@@ -21,22 +21,12 @@ const fetcher = async (url) => {
 };
 
 const Comments = ({ postSlug }) => {
-  console.log("Session in comments")
   const { status } = useSession();
-  console.log("Session in comments")
 
   const { data, mutate, isLoading } = useSWR(
-    console.log("Session in comments")
-
     `${process.env.NEXTAUTH_URL}/api/comments?postSlug=${postSlug}`,
-    
     fetcher
-    
   );
-  console.log("Session in comments")
-
-
-  console.log(data);
 
   const [desc, setDesc] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false); // New state variable
@@ -106,7 +96,9 @@ const Comments = ({ postSlug }) => {
         <Link href="/login">Login to write a comment</Link>
       )}
       <div className={styles.comments}>
-        { data?.map((item) => (
+        {isLoading
+          ? "loading"
+          : data?.map((item) => (
               <div className={styles.comment} key={item._id}>
                 <div className={styles.user}>
                   {item?.user?.image && (

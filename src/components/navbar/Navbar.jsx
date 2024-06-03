@@ -13,7 +13,6 @@ import Transition from '../transition/Transition'; // Import the Transition comp
 const Navbar = () => {
   const router = useRouter();
   const pathName = usePathname();
-  console.log(pathName);
   const [show, setShow] = useState(false);
 
   const handleClick = (e) => {
