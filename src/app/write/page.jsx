@@ -1,27 +1,24 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import styles from "./writePage.module.css";
 import { useEffect, useState } from "react";
 import "react-quill/dist/quill.bubble.css";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { app } from "@/utils/firebase";
-import ReactQuill from "react-quill";
-import { set } from "date-fns";
 import Loading from "@/components/loading/Loading";
+import Head from "next/head";
+
+// Dynamically import ReactQuill with SSR disabled
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const WritePage = () => {
   const { status } = useSession();
   const router = useRouter();
 
-  const [open, setOpen] = useState(false);
   const [file, setFile] = useState(null);
   const [media, setMedia] = useState("");
   const [value, setValue] = useState("");
@@ -31,46 +28,48 @@ const WritePage = () => {
   const [titleLength, setTitleLength] = useState(0);
 
   useEffect(() => {
-    const storage = getStorage(app);
-    const upload = () => {
-      const name = new Date().getTime() + file.name;
-      const storageRef = ref(storage, name);
+    if (typeof window !== "undefined" && file) {
+      const storage = getStorage(app);
+      const upload = () => {
+        const name = new Date().getTime() + file.name;
+        const storageRef = ref(storage, name);
+        const uploadTask = uploadBytesResumable(storageRef, file);
 
-      const uploadTask = uploadBytesResumable(storageRef, file);
-
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log("Upload is " + progress + "% done");
+            switch (snapshot.state) {
+              case "paused":
+                console.log("Upload is paused");
+                break;
+              case "running":
+                console.log("Upload is running");
+                break;
+            }
+          },
+          (error) => {},
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              setMedia(downloadURL);
+            });
           }
-        },
-        (error) => {},
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setMedia(downloadURL);
-          });
-        }
-      );
-    };
+        );
+      };
 
-    file && upload();
+      upload();
+    }
   }, [file]);
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/");
+    }
+  }, [status, router]);
 
   if (status === "loading") {
     return <div className={styles.loading}>Loading...</div>;
-  }
-
-  if (status === "unauthenticated") {
-    router.push("/");
   }
 
   const slugify = (str) =>
@@ -111,14 +110,10 @@ const WritePage = () => {
         const data = await res.json();
         router.push(`/posts/${data.slug}`);
       } else {
-        // Handle different statuses appropriately
         console.error("Failed to post: ", res.status);
-        throw new Error(
-          `Failed to publish post, server responded with status: ${res.status}`
-        );
+        throw new Error(`Failed to publish post, server responded with status: ${res.status}`);
       }
     } catch (error) {
-      // Error handling, e.g., show a notification or log
       console.error("Publishing error:", error);
       alert("Error publishing post. Please try again.");
     } finally {
@@ -130,24 +125,15 @@ const WritePage = () => {
 
   return (
     <>
-      <head>
+      <Head> {/* Use Head from next/head */}
         <title>Write a new blog post - My Next Blog</title>
-        <meta
-          name="description"
-          content="Write a new blog post on My Next Blog."
-        />
-        <meta
-          property="og:title"
-          content="Write a new blog post - My Next Blog"
-        />
-        <meta
-          property="og:description"
-          content="Write a new blog post on My Next Blog."
-        />
+        <meta name="description" content="Write a new blog post on My Next Blog." />
+        <meta property="og:title" content="Write a new blog post - My Next Blog" />
+        <meta property="og:description" content="Write a new blog post on My Next Blog." />
         <meta property="og:url" content="https://yourwebsite.com/write" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://yourwebsite.com/write" />
-      </head>
+      </Head>
       <div className={styles.container}>
         <Loading show={isSubmitting} />
         <input
@@ -189,8 +175,8 @@ const WritePage = () => {
             theme="bubble"
             value={value}
             onChange={setValue}
-              style={{ fontWeight: 'normal' }}
-            placeholder="Tell your story. Past images directly in the editor..."
+            style={{ fontWeight: 'normal' }}
+            placeholder="Tell your story. Paste images directly in the editor..."
           />
         </div>
         <button
