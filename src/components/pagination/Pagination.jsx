@@ -13,7 +13,6 @@ const Pagination = ({ page, hasPrev, hasNext, total }) => {
   const current = parseInt(page) || 1;
 
   const handleClickNext = (e) => {
-    e.preventEventDefault();
     setShow(true);
     router.push(`?page=${page + 1}`)
   }
