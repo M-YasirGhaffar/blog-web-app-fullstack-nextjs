@@ -23,10 +23,10 @@ const fetcher = async (url) => {
 const Comments = ({ postSlug }) => {
   const { status } = useSession();
 
-  console.log(process.env.NEXTAUTH_URL);
+  console.log(process.env.NEXT_PUBLIC_NEXTAUTH_URL);
 
   const { data, mutate, isLoading } = useSWR(
-    `${process.env.NEXTAUTH_URL}/api/comments?postSlug=${postSlug}`,
+    `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/comments?postSlug=${postSlug}`,
     fetcher
   );
 

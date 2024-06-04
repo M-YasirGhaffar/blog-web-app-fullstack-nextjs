@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "./menuPosts.module.css"
 
 const fetchPosts = async () => {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/popular`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/popular`);
   const data = await res.json();
   return data.posts;
 };
